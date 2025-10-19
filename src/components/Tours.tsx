@@ -2,6 +2,7 @@ import { Clock, Users, Star } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useNavigate } from "react-router-dom";
 
 const tours = [
   {
@@ -40,6 +41,8 @@ const tours = [
 ];
 
 const Tours = () => {
+  const navigate = useNavigate();
+  
   return (
     <section id="tours" className="py-20">
       <div className="container mx-auto px-4">
@@ -98,7 +101,9 @@ const Tours = () => {
                 </div>
               </CardContent>
               <CardFooter className="p-6 pt-0">
-                <Button className="w-full">Book Now</Button>
+                <Button className="w-full" onClick={() => navigate(`/book/${tour.id}`)}>
+                  Book Now
+                </Button>
               </CardFooter>
             </Card>
           ))}
