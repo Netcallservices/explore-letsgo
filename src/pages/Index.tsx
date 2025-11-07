@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -6,19 +7,41 @@ import Tours from "@/components/Tours";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import IntroAnimation from "@/components/IntroAnimation";
 
 const Index = () => {
+  const [showIntro, setShowIntro] = useState(true);
+  const [hasSeenIntro, setHasSeenIntro] = useState(false);
+
+  useEffect(() => {
+    // Check if user has seen the intro in this session
+    const seen = sessionStorage.getItem("hasSeenIntro");
+    if (seen) {
+      setShowIntro(false);
+      setHasSeenIntro(true);
+    }
+  }, []);
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem("hasSeenIntro", "true");
+    setShowIntro(false);
+    setHasSeenIntro(true);
+  };
+
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <Features />
-      <Destinations />
-      <Tours />
-      <About />
-      <Contact />
-      <Footer />
-    </div>
+    <>
+      {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
+      <div className={`min-h-screen ${hasSeenIntro ? "animate-fade-in" : ""}`}>
+        <Navbar />
+        <Hero />
+        <Features />
+        <Destinations />
+        <Tours />
+        <About />
+        <Contact />
+        <Footer />
+      </div>
+    </>
   );
 };
 

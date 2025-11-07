@@ -96,6 +96,8 @@ export default {
         "fade-up": "fade-up 0.8s ease-out",
         "scale-in": "scale-in 0.5s ease-out",
         "float": "float 3s ease-in-out infinite",
+        "flicker": "flicker 0.5s ease-in-out",
+        "scan-line": "scan-line 2s linear infinite",
       },
     },
   },
