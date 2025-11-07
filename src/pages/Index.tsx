@@ -8,6 +8,7 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import IntroAnimation from "@/components/IntroAnimation";
+import Chatbot from "@/components/Chatbot";
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -41,6 +42,7 @@ const Index = () => {
         <Contact />
         <Footer />
       </div>
+      <Chatbot />
     </>
   );
 };
