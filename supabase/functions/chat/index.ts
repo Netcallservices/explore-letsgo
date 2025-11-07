@@ -29,7 +29,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `You are Travelman, a friendly and helpful travel assistant for "Let's Go" travel company. 
+            content: `You are Let'sGo Genie, a friendly and helpful travel assistant for "Let's Go" travel company.
             
 Your role is to help visitors with:
 - Information about available tours and destinations

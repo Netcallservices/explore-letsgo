@@ -16,6 +16,7 @@ const Chatbot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const chatWindowRef = useRef<HTMLDivElement>(null);
   const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
   // Show greeting when chatbot opens for the first time
@@ -24,12 +25,30 @@ const Chatbot = () => {
       setMessages([
         {
           role: "assistant",
-          content: "Hi! 👋 I'm Travelman, your travel assistant. How can I help you plan your next adventure today?",
+          content: "Hi! 👋 I'm Let'sGo Genie, your travel assistant. How can I help you plan your next adventure today?",
         },
       ]);
       setHasGreeted(true);
     }
   }, [isOpen, hasGreeted]);
+
+  // Close chatbot when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        chatWindowRef.current &&
+        !chatWindowRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -142,7 +161,7 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-[380px] h-[600px] bg-card border border-border rounded-lg shadow-2xl z-50 flex flex-col animate-scale-in">
+        <div ref={chatWindowRef} className="fixed bottom-6 right-6 w-[380px] h-[600px] bg-card border border-border rounded-lg shadow-2xl z-50 flex flex-col animate-scale-in">
           {/* Header */}
           <div className="bg-primary text-primary-foreground p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -150,7 +169,7 @@ const Chatbot = () => {
                 <MessageCircle className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-semibold">Travelman</h3>
+                <h3 className="font-semibold">Let'sGo Genie</h3>
                 <p className="text-xs opacity-90">Your Travel Assistant</p>
               </div>
             </div>
