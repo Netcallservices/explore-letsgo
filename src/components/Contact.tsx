@@ -31,8 +31,8 @@ const Contact = () => {
           {/* Contact Info */}
           <div className="space-y-8 animate-fade-up">
             <div>
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              <div className="space-y-6">
+              <h3 className="text-xl md:text-2xl font-bold mb-6">Contact Information</h3>
+              <div className="space-y-4 md:space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Phone className="h-5 w-5 text-primary" />

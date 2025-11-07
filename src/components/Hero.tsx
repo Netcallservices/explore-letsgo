@@ -28,8 +28,8 @@ const Hero = () => {
           </p>
 
           {/* Search Box */}
-          <div className="bg-card/95 backdrop-blur-sm p-6 rounded-2xl shadow-2xl animate-scale-in">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="bg-card/95 backdrop-blur-sm p-4 md:p-6 rounded-2xl shadow-2xl animate-scale-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               <div className="flex items-center gap-3 bg-background rounded-lg px-4 py-3">
                 <MapPin className="h-5 w-5 text-primary" />
                 <Input

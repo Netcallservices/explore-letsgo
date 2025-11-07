@@ -36,22 +36,22 @@ const About = () => {
             </ul>
             <Button size="lg">Learn More About Us</Button>
           </div>
-          <div className="relative animate-scale-in">
+          <div className="relative animate-scale-in mt-8 lg:mt-0">
             <div className="grid grid-cols-2 gap-4">
               <img
                 src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=500&fit=crop"
                 alt="Travel adventure"
-                className="rounded-2xl w-full h-64 object-cover"
+                className="rounded-2xl w-full h-48 md:h-64 object-cover"
               />
               <img
                 src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=500&fit=crop"
                 alt="Beautiful destination"
-                className="rounded-2xl w-full h-64 object-cover mt-8"
+                className="rounded-2xl w-full h-48 md:h-64 object-cover mt-8"
               />
             </div>
-            <div className="absolute -bottom-8 -right-8 bg-primary text-primary-foreground p-8 rounded-2xl shadow-xl">
-              <p className="text-4xl font-bold mb-2">10+</p>
-              <p className="text-sm">Years Experience</p>
+            <div className="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 bg-primary text-primary-foreground p-6 md:p-8 rounded-2xl shadow-xl">
+              <p className="text-3xl md:text-4xl font-bold mb-2">10+</p>
+              <p className="text-xs md:text-sm">Years Experience</p>
             </div>
           </div>
         </div>
