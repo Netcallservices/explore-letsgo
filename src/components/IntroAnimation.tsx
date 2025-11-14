@@ -52,7 +52,7 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
       />
 
       {/* Main content */}
-      <div className="relative z-10 text-center">
+      <div className="relative z-10 text-center px-4">
         {/* Logo container with power-on effect */}
         <div
           className={`transition-all duration-1000 ${
@@ -68,16 +68,16 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
 
           {/* Icon */}
           <div className="relative">
-            <Plane className="w-24 h-24 mx-auto text-primary animate-float mb-6" />
+            <Plane className="w-16 h-16 md:w-24 md:h-24 mx-auto text-primary animate-float mb-4 md:mb-6" />
             
             {/* Brand name */}
-            <h1 className="text-6xl font-bold text-foreground mb-2 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-2 tracking-tight">
               Let's Go
             </h1>
             
             {/* Tagline with typewriter effect */}
             <p
-              className={`text-xl text-muted-foreground transition-opacity duration-500 ${
+              className={`text-base md:text-xl text-muted-foreground transition-opacity duration-500 ${
                 stage >= 2 ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -86,7 +86,7 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
           </div>
 
           {/* Loading bar */}
-          <div className="mt-8 w-64 mx-auto h-1 bg-muted rounded-full overflow-hidden">
+          <div className="mt-6 md:mt-8 w-48 md:w-64 mx-auto h-1 bg-muted rounded-full overflow-hidden">
             <div
               className={`h-full bg-gradient-to-r from-primary via-secondary to-primary transition-all duration-1000 ${
                 stage >= 2 ? "w-full" : "w-0"
@@ -98,7 +98,7 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
 
       {/* Corner power indicators */}
       <div
-        className={`absolute top-8 right-8 flex items-center gap-2 transition-opacity duration-300 ${
+        className={`absolute top-4 right-4 md:top-8 md:right-8 flex items-center gap-2 transition-opacity duration-300 ${
           stage >= 1 ? "opacity-100" : "opacity-0"
         }`}
       >
