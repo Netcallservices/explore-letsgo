@@ -152,24 +152,24 @@ const Chatbot = () => {
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 z-50 animate-float"
+          className="fixed bottom-4 right-4 md:bottom-6 md:right-6 h-12 w-12 md:h-14 md:w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 z-50 animate-float"
           aria-label="Open chat"
         >
-          <MessageCircle className="h-6 w-6" />
+          <MessageCircle className="h-5 w-5 md:h-6 md:w-6" />
         </Button>
       )}
 
       {/* Chat Window */}
       {isOpen && (
-        <div ref={chatWindowRef} className="fixed bottom-6 right-6 w-[380px] h-[600px] bg-card border border-border rounded-lg shadow-2xl z-50 flex flex-col animate-scale-in">
+        <div ref={chatWindowRef} className="fixed bottom-0 right-0 left-0 md:bottom-6 md:right-6 md:left-auto w-full md:w-[380px] h-[100dvh] md:h-[600px] md:max-h-[calc(100vh-3rem)] bg-card border-t md:border border-border md:rounded-lg shadow-2xl z-50 flex flex-col animate-scale-in">
           {/* Header */}
-          <div className="bg-primary text-primary-foreground p-4 rounded-t-lg flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
-                <MessageCircle className="h-5 w-5" />
+          <div className="bg-primary text-primary-foreground p-3 md:p-4 md:rounded-t-lg flex items-center justify-between shrink-0">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-secondary rounded-full flex items-center justify-center">
+                <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
               </div>
               <div>
-                <h3 className="font-semibold">Let'sGo Genie</h3>
+                <h3 className="font-semibold text-sm md:text-base">Let'sGo Genie</h3>
                 <p className="text-xs opacity-90">Your Travel Assistant</p>
               </div>
             </div>
@@ -177,15 +177,15 @@ const Chatbot = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(false)}
-              className="hover:bg-primary-foreground/20"
+              className="hover:bg-primary-foreground/20 h-8 w-8 md:h-10 md:w-10"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4 md:h-5 md:w-5" />
             </Button>
           </div>
 
           {/* Messages */}
-          <ScrollArea className="flex-1 p-4" ref={scrollRef}>
-            <div className="space-y-4">
+          <ScrollArea className="flex-1 p-3 md:p-4" ref={scrollRef}>
+            <div className="space-y-3 md:space-y-4">
               {messages.map((message, index) => (
                 <div
                   key={index}
@@ -194,7 +194,7 @@ const Chatbot = () => {
                   }`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-lg px-4 py-2 ${
+                    className={`max-w-[85%] md:max-w-[80%] rounded-lg px-3 py-2 md:px-4 ${
                       message.role === "user"
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-foreground"
@@ -206,7 +206,7 @@ const Chatbot = () => {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-muted rounded-lg px-4 py-2">
+                  <div className="bg-muted rounded-lg px-3 py-2 md:px-4">
                     <Loader2 className="h-4 w-4 animate-spin" />
                   </div>
                 </div>
@@ -215,7 +215,7 @@ const Chatbot = () => {
           </ScrollArea>
 
           {/* Input */}
-          <div className="p-4 border-t border-border">
+          <div className="p-3 md:p-4 border-t border-border shrink-0 bg-card">
             <div className="flex gap-2">
               <Input
                 value={input}
@@ -223,12 +223,13 @@ const Chatbot = () => {
                 onKeyPress={handleKeyPress}
                 placeholder="Ask me anything..."
                 disabled={isLoading}
-                className="flex-1"
+                className="flex-1 text-sm md:text-base"
               />
               <Button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
                 size="icon"
+                className="h-9 w-9 md:h-10 md:w-10 shrink-0"
               >
                 <Send className="h-4 w-4" />
               </Button>
