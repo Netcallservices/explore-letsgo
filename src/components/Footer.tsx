@@ -1,7 +1,18 @@
 import { Plane, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+
+  const handleNavClick = (hash: string) => {
+    if (location.pathname === '/') {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <footer className="bg-card border-t">
@@ -37,24 +48,24 @@ const Footer = () => {
             <h3 className="font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/#home" onClick={() => handleNavClick('#home')} className="text-muted-foreground hover:text-primary transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#destinations" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/#destinations" onClick={() => handleNavClick('#destinations')} className="text-muted-foreground hover:text-primary transition-colors">
                   Destinations
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#tours" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/#tours" onClick={() => handleNavClick('#tours')} className="text-muted-foreground hover:text-primary transition-colors">
                   Tours
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/#about" onClick={() => handleNavClick('#about')} className="text-muted-foreground hover:text-primary transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -79,9 +90,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/#contact" onClick={() => handleNavClick('#contact')} className="text-muted-foreground hover:text-primary transition-colors">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
