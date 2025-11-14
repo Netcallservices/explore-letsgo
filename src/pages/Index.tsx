@@ -3,9 +3,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Destinations from "@/components/Destinations";
-import Tours from "@/components/Tours";
-import About from "@/components/About";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import IntroAnimation from "@/components/IntroAnimation";
 import Chatbot from "@/components/Chatbot";
@@ -37,9 +34,6 @@ const Index = () => {
         <Hero />
         <Features />
         <Destinations />
-        <Tours />
-        <About />
-        <Contact />
         <Footer />
       </div>
       <Chatbot />

@@ -48,7 +48,7 @@ const Footer = () => {
             <h3 className="font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/#home" onClick={() => handleNavClick('#home')} className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
                   Home
                 </Link>
               </li>
@@ -58,12 +58,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/#tours" onClick={() => handleNavClick('#tours')} className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/tours" className="text-muted-foreground hover:text-primary transition-colors">
                   Tours
                 </Link>
               </li>
               <li>
-                <Link to="/#about" onClick={() => handleNavClick('#about')} className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
                   About Us
                 </Link>
               </li>
@@ -90,7 +90,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <Link to="/#contact" onClick={() => handleNavClick('#contact')} className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
                   Contact Us
                 </Link>
               </li>
