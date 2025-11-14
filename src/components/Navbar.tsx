@@ -10,11 +10,11 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "/", type: "route" },
     { name: "Destinations", href: "/#destinations", type: "hash" },
-    { name: "Tours", href: "/#tours", type: "hash" },
+    { name: "Tours", href: "/tours", type: "route" },
     { name: "View Tours", href: "/view-tours", type: "route" },
     { name: "Itinerary", href: "/itinerary", type: "route" },
-    { name: "About", href: "/#about", type: "hash" },
-    { name: "Contact", href: "/#contact", type: "hash" },
+    { name: "About", href: "/about", type: "route" },
+    { name: "Contact", href: "/contact", type: "route" },
     { name: "Careers", href: "/careers", type: "route" },
   ];
 
