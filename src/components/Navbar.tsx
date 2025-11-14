@@ -15,6 +15,7 @@ const Navbar = () => {
     { name: "Itinerary", href: "/itinerary", type: "route" },
     { name: "About", href: "/#about", type: "hash" },
     { name: "Contact", href: "/#contact", type: "hash" },
+    { name: "Careers", href: "/careers", type: "route" },
   ];
 
   const handleNavClick = (href: string, type: string) => {
