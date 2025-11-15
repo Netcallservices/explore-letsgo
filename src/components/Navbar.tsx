@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "/", type: "route" },
-    { name: "Destinations", href: "/#destinations", type: "hash" },
+    { name: "Destinations", href: "/destinations", type: "route" },
     { name: "Tours", href: "/tours", type: "route" },
     { name: "View Tours", href: "/view-tours", type: "route" },
     { name: "Itinerary", href: "/itinerary", type: "route" },

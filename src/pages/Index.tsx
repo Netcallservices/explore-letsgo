@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
-import Destinations from "@/components/Destinations";
 import Footer from "@/components/Footer";
 import IntroAnimation from "@/components/IntroAnimation";
 import Chatbot from "@/components/Chatbot";
@@ -33,7 +32,6 @@ const Index = () => {
         <Navbar />
         <Hero />
         <Features />
-        <Destinations />
         <Footer />
       </div>
       <Chatbot />

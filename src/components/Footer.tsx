@@ -53,7 +53,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/#destinations" onClick={() => handleNavClick('#destinations')} className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/destinations" className="text-muted-foreground hover:text-primary transition-colors">
                   Destinations
                 </Link>
               </li>
