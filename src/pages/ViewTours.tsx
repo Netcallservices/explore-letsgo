@@ -133,10 +133,10 @@ const ViewTours = () => {
       <section className="relative py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
         <div className="container mx-auto px-4">
           <div className="text-center animate-fade-up">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
               Explore Our Tours
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '100ms' }}>
               Discover unforgettable journeys curated just for you
             </p>
           </div>
@@ -148,11 +148,12 @@ const ViewTours = () => {
         <div className="container mx-auto px-4">
           <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
             <TabsList className="w-full justify-start overflow-x-auto flex-wrap h-auto gap-2">
-              {categories.map((category) => (
+              {categories.map((category, idx) => (
                 <TabsTrigger 
                   key={category} 
                   value={category}
-                  className="capitalize"
+                  className="capitalize hover:scale-110 transition-transform duration-300 animate-fade-in"
+                  style={{ animationDelay: `${200 + idx * 50}ms` }}
                 >
                   {category}
                 </TabsTrigger>
@@ -169,26 +170,30 @@ const ViewTours = () => {
             {filteredTours.map((tour, index) => (
               <Card
                 key={tour.id}
-                className="group overflow-hidden hover:shadow-2xl transition-all duration-500 animate-fade-up hover:-translate-y-2"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="group overflow-hidden hover:shadow-2xl transition-all duration-500 animate-fade-up hover:-translate-y-3 opacity-0"
+                style={{ 
+                  animationDelay: `${index * 100}ms`,
+                  animationFillMode: 'forwards'
+                }}
               >
                 <div className="relative h-56 overflow-hidden">
                   <img
                     src={tour.image}
                     alt={tour.title}
-                    className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-125 group-hover:rotate-1 transition-all duration-700"
                   />
-                  <Badge className="absolute top-4 left-4 bg-secondary">
+                  <Badge className="absolute top-4 left-4 bg-secondary group-hover:scale-110 transition-transform duration-300">
                     {tour.category}
                   </Badge>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 transform translate-y-0 group-hover:translate-y-0 transition-transform duration-300">
                     <div className="flex items-center gap-1 text-white">
                       <MapPin className="h-4 w-4" />
                       <span className="text-sm font-semibold">{tour.location}</span>
                     </div>
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <CardContent className="p-6">
+                <CardContent className="p-6 transform transition-all duration-300 group-hover:translate-y-[-4px]">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="flex items-center gap-1">
                       <Star className="h-4 w-4 fill-secondary text-secondary" />
@@ -221,7 +226,7 @@ const ViewTours = () => {
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
                   <Button 
-                    className="w-full" 
+                    className="w-full group-hover:scale-105 transition-all duration-300 hover:shadow-lg" 
                     onClick={() => navigate(`/book/${tour.id}`)}
                   >
                     Book Now
