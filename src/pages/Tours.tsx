@@ -63,20 +63,24 @@ const Tours = () => {
             {tours.map((tour, index) => (
               <Card
                 key={tour.id}
-                className="group overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-up"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="group overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 animate-fade-up opacity-0"
+                style={{ 
+                  animationDelay: `${index * 150}ms`,
+                  animationFillMode: 'forwards'
+                }}
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
                     src={tour.image}
                     alt={tour.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-125 group-hover:rotate-2 transition-all duration-700"
                   />
-                  <Badge className="absolute top-4 left-4 bg-secondary">
+                  <Badge className="absolute top-4 left-4 bg-secondary animate-fade-in group-hover:scale-110 transition-transform duration-300">
                     {tour.category}
                   </Badge>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <CardContent className="p-6">
+                <CardContent className="p-6 transform transition-all duration-300 group-hover:translate-y-[-4px]">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="flex items-center gap-1">
                       <Star className="h-4 w-4 fill-secondary text-secondary" />
@@ -105,7 +109,7 @@ const Tours = () => {
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
-                  <Button className="w-full" onClick={() => navigate(`/book/${tour.id}`)}>
+                  <Button className="w-full group-hover:scale-105 transition-transform duration-300 hover:shadow-lg" onClick={() => navigate(`/book/${tour.id}`)}>
                     Book Now
                   </Button>
                 </CardFooter>
