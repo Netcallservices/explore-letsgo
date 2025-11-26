@@ -10,17 +10,7 @@ const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [hasSeenIntro, setHasSeenIntro] = useState(false);
 
-  useEffect(() => {
-    // Check if user has seen the intro in this session
-    const seen = sessionStorage.getItem("hasSeenIntro");
-    if (seen) {
-      setShowIntro(false);
-      setHasSeenIntro(true);
-    }
-  }, []);
-
   const handleIntroComplete = () => {
-    sessionStorage.setItem("hasSeenIntro", "true");
     setShowIntro(false);
     setHasSeenIntro(true);
   };
