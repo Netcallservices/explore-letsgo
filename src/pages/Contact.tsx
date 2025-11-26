@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useParallax } from "@/hooks/use-parallax";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const Contact = () => {
   const { toast } = useToast();
+  const parallaxOffset = useParallax(0.3);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,13 +22,26 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <section className="py-20 pt-32">
-        <div className="container mx-auto px-4">
+      <section className="py-20 pt-32 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{ 
+            transform: `translateY(${parallaxOffset}px)`,
+            backgroundImage: 'radial-gradient(circle at 60% 40%, hsl(var(--primary)) 0%, transparent 50%), radial-gradient(circle at 20% 70%, hsl(var(--secondary)) 0%, transparent 50%)',
+          }}
+        />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12 animate-fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 
+              className="text-4xl md:text-5xl font-bold mb-4"
+              style={{ transform: `translateY(${-parallaxOffset * 0.2}px)` }}
+            >
               Get In Touch
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p 
+              className="text-xl text-muted-foreground max-w-2xl mx-auto"
+              style={{ transform: `translateY(${-parallaxOffset * 0.15}px)` }}
+            >
               Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
             </p>
           </div>

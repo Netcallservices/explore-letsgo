@@ -2,8 +2,11 @@ import { Search, MapPin, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import heroImage from "@/assets/hero-beach.jpg";
+import { useParallax } from "@/hooks/use-parallax";
 
 const Hero = () => {
+  const parallaxOffset = useParallax(0.5);
+  
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -12,6 +15,7 @@ const Hero = () => {
           src={heroImage}
           alt="Beautiful travel destination"
           className="w-full h-full object-cover"
+          style={{ transform: `translateY(${parallaxOffset}px)` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/50" />
       </div>
