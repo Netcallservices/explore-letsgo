@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AnimatedRoute from "@/components/AnimatedRoute";
 import Index from "./pages/Index";
 import Tours from "./pages/Tours";
 import About from "./pages/About";
@@ -24,18 +25,18 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/tours" element={<Tours />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/destinations" element={<Destinations />} />
-          <Route path="/view-tours" element={<ViewTours />} />
-          <Route path="/book/:id" element={<BookTour />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/itinerary" element={<Itinerary />} />
-          <Route path="/careers" element={<Careers />} />
+          <Route path="/" element={<AnimatedRoute><Index /></AnimatedRoute>} />
+          <Route path="/tours" element={<AnimatedRoute><Tours /></AnimatedRoute>} />
+          <Route path="/about" element={<AnimatedRoute><About /></AnimatedRoute>} />
+          <Route path="/contact" element={<AnimatedRoute><Contact /></AnimatedRoute>} />
+          <Route path="/destinations" element={<AnimatedRoute><Destinations /></AnimatedRoute>} />
+          <Route path="/view-tours" element={<AnimatedRoute><ViewTours /></AnimatedRoute>} />
+          <Route path="/book/:id" element={<AnimatedRoute><BookTour /></AnimatedRoute>} />
+          <Route path="/payment" element={<AnimatedRoute><Payment /></AnimatedRoute>} />
+          <Route path="/itinerary" element={<AnimatedRoute><Itinerary /></AnimatedRoute>} />
+          <Route path="/careers" element={<AnimatedRoute><Careers /></AnimatedRoute>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<AnimatedRoute><NotFound /></AnimatedRoute>} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
