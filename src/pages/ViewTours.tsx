@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Clock, Users, Star, MapPin, Calendar } from "lucide-react";
+import { Clock, Users, Star, MapPin } from "lucide-react";
+import { useParallax } from "@/hooks/use-parallax";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -118,6 +119,7 @@ const allTours = [
 const ViewTours = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const parallaxOffset = useParallax(0.4);
 
   const categories = ["all", "Adventure", "Cultural", "Romance", "Beach", "City", "Luxury"];
 
@@ -130,13 +132,29 @@ const ViewTours = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{ 
+            transform: `translateY(${parallaxOffset}px)`,
+            backgroundImage: 'radial-gradient(circle at 20% 50%, hsl(var(--primary)) 0%, transparent 50%), radial-gradient(circle at 80% 80%, hsl(var(--secondary)) 0%, transparent 50%)',
+          }}
+        />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center animate-fade-up">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
+            <h1 
+              className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in"
+              style={{ transform: `translateY(${-parallaxOffset * 0.3}px)` }}
+            >
               Explore Our Tours
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <p 
+              className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" 
+              style={{ 
+                animationDelay: '100ms',
+                transform: `translateY(${-parallaxOffset * 0.2}px)`
+              }}
+            >
               Discover unforgettable journeys curated just for you
             </p>
           </div>

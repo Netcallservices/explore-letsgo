@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import { useParallax } from "@/hooks/use-parallax";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -44,17 +45,31 @@ const tours = [
 
 const Tours = () => {
   const navigate = useNavigate();
+  const parallaxOffset = useParallax(0.3);
   
   return (
     <div className="min-h-screen">
       <Navbar />
-      <section className="py-20 pt-32">
-        <div className="container mx-auto px-4">
+      <section className="py-20 pt-32 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{ 
+            transform: `translateY(${parallaxOffset}px)`,
+            backgroundImage: 'radial-gradient(circle at 50% 30%, hsl(var(--primary)) 0%, transparent 50%)',
+          }}
+        />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12 animate-fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 
+              className="text-4xl md:text-5xl font-bold mb-4"
+              style={{ transform: `translateY(${-parallaxOffset * 0.2}px)` }}
+            >
               Featured Tours
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p 
+              className="text-xl text-muted-foreground max-w-2xl mx-auto"
+              style={{ transform: `translateY(${-parallaxOffset * 0.15}px)` }}
+            >
               Carefully curated experiences designed to create lasting memories
             </p>
           </div>

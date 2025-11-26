@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { MapPin, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useParallax } from "@/hooks/use-parallax";
 import greeceImage from "@/assets/destination-greece.jpg";
 import baliImage from "@/assets/destination-bali.jpg";
 import parisImage from "@/assets/destination-paris.jpg";
@@ -43,16 +44,31 @@ const destinations = [
 ];
 
 const Destinations = () => {
+  const parallaxOffset = useParallax(0.3);
+  
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-24 pb-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+      <main className="pt-24 pb-20 bg-muted/30 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{ 
+            transform: `translateY(${parallaxOffset}px)`,
+            backgroundImage: 'radial-gradient(circle at 30% 20%, hsl(var(--primary)) 0%, transparent 50%), radial-gradient(circle at 70% 60%, hsl(var(--accent)) 0%, transparent 50%)',
+          }}
+        />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12 animate-fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 
+              className="text-4xl md:text-5xl font-bold mb-4"
+              style={{ transform: `translateY(${-parallaxOffset * 0.2}px)` }}
+            >
               Popular Destinations
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p 
+              className="text-xl text-muted-foreground max-w-2xl mx-auto"
+              style={{ transform: `translateY(${-parallaxOffset * 0.15}px)` }}
+            >
               Discover the world's most amazing places handpicked for your next adventure
             </p>
           </div>

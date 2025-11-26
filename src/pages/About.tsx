@@ -2,8 +2,10 @@ import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useParallax } from "@/hooks/use-parallax";
 
 const About = () => {
+  const parallaxOffset = useParallax(0.3);
   const highlights = [
     "Over 10 years of travel expertise",
     "500,000+ happy travelers",
@@ -46,11 +48,13 @@ const About = () => {
                   src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=500&fit=crop"
                   alt="Travel adventure"
                   className="rounded-2xl w-full h-48 md:h-64 object-cover"
+                  style={{ transform: `translateY(${parallaxOffset * 0.8}px)` }}
                 />
                 <img
                   src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=500&fit=crop"
                   alt="Beautiful destination"
                   className="rounded-2xl w-full h-48 md:h-64 object-cover mt-8"
+                  style={{ transform: `translateY(${-parallaxOffset * 0.6}px)` }}
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 bg-primary text-primary-foreground p-6 md:p-8 rounded-2xl shadow-xl">
