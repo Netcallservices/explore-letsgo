@@ -9,6 +9,22 @@ import Chatbot from "@/components/Chatbot";
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [hasSeenIntro, setHasSeenIntro] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  useEffect(() => {
+    // Check if this is truly the initial page load (not a route change)
+    const hasLoadedBefore = sessionStorage.getItem('hasLoadedBefore');
+    
+    if (hasLoadedBefore) {
+      // If we've loaded before in this session, skip the intro
+      setShowIntro(false);
+      setHasSeenIntro(true);
+      setIsInitialLoad(false);
+    } else {
+      // Mark that we've loaded at least once in this session
+      sessionStorage.setItem('hasLoadedBefore', 'true');
+    }
+  }, []);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
