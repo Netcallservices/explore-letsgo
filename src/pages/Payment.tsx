@@ -147,6 +147,106 @@ const Payment = () => {
                 </Card>
               )}
 
+              {/* PayPal Details */}
+              {paymentMethod === "paypal" && (
+                <Card className="animate-fade-up" style={{ animationDelay: "100ms" }}>
+                  <CardHeader>
+                    <CardTitle>PayPal Details</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handlePayment} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="paypalEmail">PayPal Email</Label>
+                        <Input 
+                          id="paypalEmail" 
+                          type="email"
+                          placeholder="your.email@example.com" 
+                          required 
+                        />
+                      </div>
+
+                      <div className="p-4 bg-muted/50 rounded-lg">
+                        <p className="text-sm text-muted-foreground">
+                          You'll be redirected to PayPal to complete your payment securely.
+                        </p>
+                      </div>
+
+                      <Button 
+                        type="submit" 
+                        className="w-full" 
+                        size="lg"
+                        disabled={processing}
+                      >
+                        {processing ? "Processing..." : `Pay $${bookingData.totalPrice} with PayPal`}
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Bank Transfer Details */}
+              {paymentMethod === "bank" && (
+                <Card className="animate-fade-up" style={{ animationDelay: "100ms" }}>
+                  <CardHeader>
+                    <CardTitle>Bank Transfer Details</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handlePayment} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="accountHolder">Account Holder Name</Label>
+                        <Input 
+                          id="accountHolder" 
+                          placeholder="John Doe" 
+                          required 
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="accountNumber">Account Number</Label>
+                        <Input 
+                          id="accountNumber" 
+                          placeholder="1234567890" 
+                          required 
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="bankName">Bank Name</Label>
+                        <Input 
+                          id="bankName" 
+                          placeholder="Your Bank Name" 
+                          required 
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="routingNumber">Routing Number</Label>
+                        <Input 
+                          id="routingNumber" 
+                          placeholder="123456789" 
+                          required 
+                        />
+                      </div>
+
+                      <div className="p-4 bg-muted/50 rounded-lg">
+                        <p className="text-sm text-muted-foreground">
+                          Your booking will be confirmed once we receive the bank transfer. This usually takes 1-3 business days.
+                        </p>
+                      </div>
+
+                      <Button 
+                        type="submit" 
+                        className="w-full" 
+                        size="lg"
+                        disabled={processing}
+                      >
+                        {processing ? "Processing..." : `Confirm Bank Transfer for $${bookingData.totalPrice}`}
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              )}
+
               {/* Security Badge */}
               <div className="flex items-center gap-3 text-sm text-muted-foreground animate-fade-up" style={{ animationDelay: "200ms" }}>
                 <Lock className="h-4 w-4" />
