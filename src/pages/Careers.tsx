@@ -2,9 +2,22 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Briefcase, MapPin, Clock, Users, Globe, Heart } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Briefcase, MapPin, Clock, Users, Globe, Heart, Upload } from "lucide-react";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Careers = () => {
+  const [open, setOpen] = useState(false);
+  const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const { toast } = useToast();
+
   const openPositions = [
     {
       title: "Travel Consultant",
@@ -66,6 +79,80 @@ const Careers = () => {
       description: "Remote work options and flexible hours to maintain work-life balance.",
     },
   ];
+
+  const handleApply = (positionTitle: string) => {
+    setSelectedPosition(positionTitle);
+    setOpen(true);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setResumeFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setUploading(true);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const name = formData.get("name") as string;
+      const email = formData.get("email") as string;
+      const phone = formData.get("phone") as string;
+      const coverLetter = formData.get("coverLetter") as string;
+
+      if (!resumeFile) {
+        toast({
+          title: "Error",
+          description: "Please upload your resume",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Upload resume to storage
+      const fileExt = resumeFile.name.split(".").pop();
+      const fileName = `${Date.now()}_${name.replace(/\s+/g, "_")}.${fileExt}`;
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("resumes")
+        .upload(fileName, resumeFile);
+
+      if (uploadError) throw uploadError;
+
+      // Save application to database
+      const { error: insertError } = await supabase
+        .from("job_applications")
+        .insert({
+          position_title: selectedPosition || "General Application",
+          applicant_name: name,
+          applicant_email: email,
+          applicant_phone: phone,
+          resume_url: uploadData.path,
+          cover_letter: coverLetter,
+        });
+
+      if (insertError) throw insertError;
+
+      toast({
+        title: "Application Submitted!",
+        description: "We've received your application and will be in touch soon.",
+      });
+
+      setOpen(false);
+      setResumeFile(null);
+      setSelectedPosition(null);
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      toast({
+        title: "Error",
+        description: "Failed to submit application. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setUploading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -131,7 +218,12 @@ const Careers = () => {
                   <p className="text-sm text-muted-foreground mb-4">
                     {position.description}
                   </p>
-                  <Button className="w-full">Apply Now</Button>
+                  <Button 
+                    className="w-full"
+                    onClick={() => handleApply(position.title)}
+                  >
+                    Apply Now
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -189,9 +281,78 @@ const Careers = () => {
             We're always looking for talented individuals to join our team. 
             Send us your resume and let us know how you'd like to contribute!
           </p>
-          <Button size="lg">Send Your Resume</Button>
+          <Button 
+            size="lg"
+            onClick={() => {
+              setSelectedPosition(null);
+              setOpen(true);
+            }}
+          >
+            Send Your Resume
+          </Button>
         </div>
       </section>
+
+      {/* Application Dialog */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              {selectedPosition ? `Apply for ${selectedPosition}` : "Submit Your Resume"}
+            </DialogTitle>
+            <DialogDescription>
+              Fill out the form below and upload your resume.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Full Name *</Label>
+              <Input id="name" name="name" required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email *</Label>
+              <Input id="email" name="email" type="email" required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone Number</Label>
+              <Input id="phone" name="phone" type="tel" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="resume">Resume * (PDF, DOC, DOCX)</Label>
+              <div className="flex items-center gap-2">
+                <Input
+                  id="resume"
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  onChange={handleFileChange}
+                  required
+                  className="cursor-pointer"
+                />
+                {resumeFile && (
+                  <Upload className="h-4 w-4 text-primary" />
+                )}
+              </div>
+              {resumeFile && (
+                <p className="text-xs text-muted-foreground">
+                  {resumeFile.name}
+                </p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="coverLetter">Cover Letter</Label>
+              <Textarea
+                id="coverLetter"
+                name="coverLetter"
+                placeholder="Tell us why you'd be a great fit..."
+                rows={4}
+              />
+            </div>
+            <Button type="submit" className="w-full" disabled={uploading}>
+              {uploading ? "Submitting..." : "Submit Application"}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
