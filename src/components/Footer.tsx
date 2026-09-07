@@ -116,8 +116,37 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t pt-8 text-center text-muted-foreground">
+        <div className="border-t pt-8 text-center text-muted-foreground space-y-3">
           <p>&copy; {currentYear} Let's Go. All rights reserved.</p>
+          <style>{`
+            @keyframes typewriter {
+              from { width: 0; }
+              to { width: 18ch; }
+            }
+            @keyframes blink-caret {
+              from, to { border-color: transparent; }
+              50% { border-color: currentColor; }
+            }
+            .typewriter-text {
+              display: inline-block;
+              overflow: hidden;
+              white-space: nowrap;
+              border-right: 2px solid currentColor;
+              width: 0;
+              animation: typewriter 2s steps(18, end) forwards,
+                         blink-caret 0.75s step-end infinite;
+            }
+          `}</style>
+          <p className="text-sm">
+            <a
+              href="https://www.incodent.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              <span className="typewriter-text">crafted by Incodent</span>
+            </a>
+          </p>
         </div>
       </div>
     </footer>
