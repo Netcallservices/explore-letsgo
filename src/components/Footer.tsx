@@ -143,9 +143,13 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors"
+              title="Incodent - Digital Agency"
             >
               <span className="typewriter-text">crafted by Incodent</span>
             </a>
+          </p>
+          <p className="text-xs text-muted-foreground/60">
+            Website designed &amp; developed by <a href="https://www.incodent.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">Incodent</a>
           </p>
         </div>
       </div>
