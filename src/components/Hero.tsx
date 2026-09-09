@@ -24,11 +24,11 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10 pt-20">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 animate-fade-up">
-            Discover Your Next
-            <span className="block text-primary">Adventure</span>
+            Best Tour Operator in
+            <span className="block text-primary">Berhampore</span>
           </h1>
           <p className="text-xl md:text-2xl text-foreground/80 mb-12 animate-fade-up">
-            Explore breathtaking destinations and create unforgettable memories with Let's Go
+            Your trusted travel agency in Berhampore, Murshidabad. Explore breathtaking destinations and create unforgettable memories with Let's Go.
           </p>
 
           {/* Search Box */}

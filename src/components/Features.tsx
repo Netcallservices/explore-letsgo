@@ -13,13 +13,13 @@ const features = [
   },
   {
     icon: Award,
-    title: "Expert Guides",
-    description: "Local experts who know every hidden gem",
+    title: "Trusted Since 2010",
+    description: "Serving Berhampore, Murshidabad & beyond",
   },
   {
     icon: Globe,
     title: "200+ Destinations",
-    description: "Explore stunning locations around the world",
+    description: "Domestic & international tour packages",
   },
 ];
 

@@ -6,7 +6,7 @@ const About = () => {
     "Over 10 years of travel expertise",
     "500,000+ happy travelers",
     "200+ destinations worldwide",
-    "Award-winning customer service",
+    "Serving Berhampore, Murshidabad & Bengal",
   ];
 
   return (
@@ -18,7 +18,7 @@ const About = () => {
               Why Choose Let's Go?
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              We're passionate about creating unforgettable travel experiences. Our expert team
+              We're the best tour operator in Berhampore, Murshidabad. Our expert team
               carefully curates every journey to ensure you discover the authentic beauty and
               culture of each destination.
             </p>

@@ -25,7 +25,7 @@ const Footer = () => {
               Let's Go
             </div>
             <p className="text-muted-foreground mb-4">
-              Discover amazing destinations and create unforgettable memories with the world's leading travel company.
+              Best tour operator in Berhampore, Murshidabad. Premium travel agency offering domestic & international tour packages from Bengal.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
